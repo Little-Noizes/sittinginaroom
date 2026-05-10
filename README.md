@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Recursive Acoustic Feedback
 
 ## Overview
@@ -44,13 +43,39 @@ where:
 Two parallel processing paths are implemented:
 
 ### Path A — Physical Recursive Playback
+
 - Fixed gain.
 - No automatic normalisation.
 - Intended to approximate physical electroacoustic recursive playback.
 
 ### Path B — Normalised Recursive Analysis
+
 - Signal normalisation applied each generation.
 - Intended for spectral convergence and modal/emergent behaviour analysis.
+
+---
+
+## Stage 1 Proof of Concept
+
+The Stage 1 implementation provides a clean, minimal recursive convolution pipeline for mono WAV inputs and mono measured impulse responses.
+
+It saves, for every generation:
+
+- a floating-point WAV file;
+- an FFT magnitude plot;
+- a spectrogram plot.
+
+Run both paths from the command line:
+
+```bash
+python -m src.run_stage1 data/raw_speech.wav data/35x15y.wav --generations 2 --loop-gain 0.35 --max-output-seconds 8
+```
+
+Or open the example notebook:
+
+```text
+notebooks/stage1_recursive_feedback_demo.ipynb
+```
 
 ---
 
@@ -68,6 +93,7 @@ The current development phase focuses on:
 The framework is intentionally generic at this stage.
 
 Specific:
+
 - room geometries,
 - modal predictions,
 - acoustic datasets,
@@ -94,7 +120,6 @@ The framework will generate:
 
 ```text
 recursive-acoustic-feedback/
-├── AGENTS.md
 ├── PROJECT_SPEC.md
 ├── README.md
 ├── requirements.txt
@@ -113,13 +138,8 @@ recursive-acoustic-feedback/
 │   └── utils.py
 │
 ├── notebooks/
-│   ├── exploratory_analysis.ipynb
-│   └── convergence_tests.ipynb
+│   └── stage1_recursive_feedback_demo.ipynb
 │
 ├── figures/
-│
 └── paper/
-=======
-# sittinginaroom
-This project investigates recursive electroacoustic playback using measured impulse responses.  The framework explores how repeated application of a room or system impulse response progressively transforms an excitation signal, potentially emphasising dominant resonant behaviour within the coupled source–room–receiver transfer function.  
->>>>>>> 64aa18e044973c048603f733ce5e4857424f32eb
+```
